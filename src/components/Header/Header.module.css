@@ -1,0 +1,52 @@
+.header {
+  background: linear-gradient(135deg, #233653 0%, #2d939c 50%, #3fb7a0 100%);
+  box-shadow: 0 4px 15px rgba(33, 31, 31, 0.2);
+  padding: 18px 0;
+  width: 100%;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.6rem;
+  color: #ffffff;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.greeting {
+  font-weight: 500;
+  font-size: 1.05rem;
+  color: #ffffff;
+}
+
+.logoutButton {
+  background: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.logoutButton:hover {
+  background-color: #ffffff;
+  color: #2d939c;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+}

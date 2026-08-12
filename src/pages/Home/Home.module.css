@@ -1,0 +1,59 @@
+.homeContainer {
+    min-height: 100vh;
+    background-color: var(--color-bg-main);
+    display: flex;
+    flex-direction: column;
+}
+
+.mainContent {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 40px 20px;
+    flex: 1;
+}
+
+.pageTitle {
+    font-size: 2rem;
+    color: var(--color-text-main);
+    margin-bottom: 24px;
+}
+
+.skillsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+.emptyMessage {
+  text-align: center;
+  color: #64748b;
+  font-size: 1.1rem;
+  margin-top: 40px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.btnAddSkill {
+  background: linear-gradient(135deg, var(--color-primary) 0%, #25a891 100%);
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(45, 147, 156, 0.3);
+}
+
+.btnAddSkill:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(45, 147, 156, 0.4);
+}

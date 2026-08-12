@@ -22,9 +22,14 @@ export function Login() {
         try {
             const response = await api.post('/auth/login', { login, senha });
 
-            const { token, id, login: usuarioLogin } = response.data;
+            const { token, id } = response.data;
+            
             localStorage.setItem('@app:token', token);
-            localStorage.setItem('@app:user', JSON.stringify({ id, login: usuarioLogin }));
+            localStorage.setItem('@app:usuarioId', id);
+
+            const nomeFormatado = login.includes('@') ? login.split('@')[0] : login;
+
+            localStorage.setItem('@app:user', JSON.stringify({ login: nomeFormatado })); 
 
             if (gravarSenha) {
                 localStorage.setItem('@app:login', login);
