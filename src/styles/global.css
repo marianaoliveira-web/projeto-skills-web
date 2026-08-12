@@ -1,0 +1,38 @@
+:root {
+    --brand-color-primary: #2d939c;
+    --brand-color-primary-hover: #26867d;
+    --brand-color-secundary: #2a4e6d;
+    --brand-color-dark: #212f44;
+    --brand-color-text: #211f1f;
+
+--color-primary: var(--brand-color-primary);
+--color-priary-hover: var(--brand-color-primary-hover);
+--color-secundary: var(--brand-color-secundary);
+
+--color-bg-main: #f4f7f6;
+--color-bg-card: #ffffff;
+
+--color-text-main: var(--brand-color-text);
+--color-text-muted: #6c757d;
+--color-text-light: #ffffff;
+
+--color-danger: #e74c3c;
+--color-danger-hover: #c0392b;
+
+font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+--border-radius-sm: 4px;
+--border-radius-md: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--color-bg-main);
+    color: var(--color-text-main);
+    min-height: 100vh;
+}
