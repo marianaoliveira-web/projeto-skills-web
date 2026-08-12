@@ -1,0 +1,51 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: var(--color-text-main);
+    font-size: 0.9rem;
+}
+
+.inputWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius-md);
+    font-size: 1rem;
+    font-family: var(--font-family);
+    background-color: var(--color-bg-card);
+    color: var(--color-text-main);
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.input:focus {
+    border-color: var(--color-primary);
+}
+
+.toggleButton {
+    position: abslute;
+    right: 12px;
+    background: none;
+    border: none;
+    font-size: 0.85rem;
+    color: var(--color-secundary);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.toggleButton:hover {
+    text-decoration: underline;
+}
