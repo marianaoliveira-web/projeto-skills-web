@@ -1,9 +1,9 @@
+import { AppRoutes } from './routes';
+
 function App() {
   return (
-    <>
-      <h1>Projeto Skills</h1>
-    </>
-  )
+    <AppRoutes />
+  );
 }
 
-export default App
+export default App;
