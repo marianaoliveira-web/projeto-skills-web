@@ -1,0 +1,164 @@
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: #2d939c;
+  box-shadow: 0 12px 28px -4px rgba(45, 147, 156, 0.2);
+}
+
+.imageContainer {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  background-color: #f8fafc;
+  border: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .imageContainer {
+  transform: scale(1.05);
+}
+
+.skillImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.skillName {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0f172a;
+  text-align: center;
+  margin: 0;
+}
+
+.levelBadge {
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.badgeRed {
+  background-color: #fef2f2;
+  color: #ef4444;
+}
+
+.badgeYellow {
+  background-color: #fffbeb;
+  color: #d97706;
+}
+
+.badgeGreen {
+  background-color: #ecfdf5;
+  color: #10b981;
+}
+
+.batteryContainer {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.batteryBody {
+  display: flex;
+  gap: 4px;
+  border: 2px solid #cbd5e1;
+  padding: 4px;
+  border-radius: 8px;
+  width: 110px;
+  height: 28px;
+  background-color: #f8fafc;
+}
+
+.batteryNub {
+  width: 5px;
+  height: 14px;
+  background-color: #cbd5e1;
+  border-radius: 0 3px 3px 0;
+}
+
+.segment {
+  flex: 1;
+  height: 100%;
+  border-radius: 3px;
+  background-color: #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.activeRed {
+  background-color: #ef4444;
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+}
+
+.activeYellow {
+  background-color: #f59e0b;
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+}
+
+.activeGreen {
+  background-color: #10b981;
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  margin-top: 6px;
+}
+
+.btnEdit, .btnDelete {
+  flex: 1;
+  padding: 9px 0;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+}
+
+.btnEdit {
+  background-color: #f0fdfa;
+  color: var(--color-primary);
+  border: 1px solid #ccfbf1;
+}
+
+.btnEdit:hover {
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border-color: var(--color-primary);
+}
+
+.btnDelete {
+  background-color: #fef2f2;
+  color: #ef4444;
+  border: 1px solid #fee2e2;
+}
+
+.btnDelete:hover {
+  background-color: #ef4444;
+  color: #ffffff;
+  border-color: #ef4444;
+}
