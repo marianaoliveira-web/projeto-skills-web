@@ -13,8 +13,9 @@ export function Home() {
   const carregarSkills = useCallback(async () => {
     try {
       const token = localStorage.getItem("@app:token");
+      const usuarioId = localStorage.getItem("@app:usuarioId");
 
-      const response = await api.get("/usuario-skills", {
+      const response = await api.get(`/usuario-skills/usuario/${usuarioId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -28,7 +29,6 @@ export function Home() {
   }, []);
 
   useEffect(() => {
-    // <-- MUDANÇA: Retornando a função assíncrona 'load' para resolver o erro do ESLint (cascading renders)
     async function load() {
       await carregarSkills();
     }
@@ -51,7 +51,7 @@ export function Home() {
 
       <main className={styles.mainContent}>
         <div className={styles.titleContainer}>
-          <h2 className={styles.pageTitle}>As minhas Skills</h2>
+          <h2 className={styles.pageTitle}>Minhas Skills</h2>
           <button
             className={styles.btnAddSkill}
             onClick={() => setIsModalOpen(true)}
