@@ -35,12 +35,50 @@ export function Home() {
     load();
   }, [carregarSkills]);
 
-  function handleEdit(id) {
-    console.log("Clicou para editar a skill com o id da associação:", id);
+  async function handleEdit(id) {
+    const novoLevelStr = window.prompt("Digite o novo nível da sua Skill (1 a 5):");
+    
+    if (!novoLevelStr) return; 
+
+    const novoLevel = Number(novoLevelStr);
+    
+    if (isNaN(novoLevel) || novoLevel < 1 || novoLevel > 5) {
+      alert("Nível inválido! Por favor, digite um número entre 1 e 5.");
+      return;
+    }
+
+    try {
+      const token = localStorage.getItem("@app:token");
+      
+      await api.put(`/usuario-skills/atualizar/${id}`, 
+        { level: novoLevel },
+        { headers: { Authorization: `Bearer ${token}` } }
+      );
+      
+      await carregarSkills();
+    } catch (error) {
+      console.error("Erro ao atualizar a skill:", error);
+      alert("Erro ao atualizar a skill. Tente novamente.");
+    }
   }
 
-  function handleDelete(id) {
-    console.log("Clicou para apagar a skill com o id da associação:", id);
+  async function handleDelete(id) {
+    const confirmacao = window.confirm("Tem certeza que deseja remover esta skill do seu perfil?");
+    
+    if (!confirmacao) return;
+
+    try {
+      const token = localStorage.getItem("@app:token");
+      
+      await api.delete(`/usuario-skills/deletar/${id}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
+      
+      await carregarSkills();
+    } catch (error) {
+      console.error("Erro ao deletar a skill:", error);
+      alert("Erro ao remover a skill. Tente novamente.");
+    }
   }
 
   const existingSkillIds = skills.map((skill) => skill.skillId);
