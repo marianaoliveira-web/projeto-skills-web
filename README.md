@@ -1,4 +1,3 @@
-```markdown
 # 🚀 Skills App (Frontend Web)
 
 Bem-vindo ao repositório Frontend Web do **Projeto de Skills**, desenvolvido como parte de um desafio técnico para um processo seletivo.
