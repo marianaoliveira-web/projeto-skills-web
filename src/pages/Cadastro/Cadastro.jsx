@@ -2,12 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Input } from '../../components/Input/Input';
 import { Button } from '../../components/Button/Button';
+import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { api } from '../../services/api';
 import styles from './Cadastro.module.css';
 
-export function Cadastro() {
+export function Cadastro({ toggleTheme, isDark }) {
     const [login, setLogin] = useState('');
-    const [senha,setSenha] = useState('');
+    const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
     const [erro, setErro] = useState('');
     const [sucesso, setSucesso] = useState('');
@@ -37,6 +38,8 @@ export function Cadastro() {
 
     return (
         <div className={styles.container}>
+            <AuthHeader toggleTheme={toggleTheme} isDark={isDark} />
+
             <div className={styles.card}>
                 <h1 className={styles.title}>Criar Conta</h1>
 
