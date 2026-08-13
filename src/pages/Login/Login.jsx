@@ -2,10 +2,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Input } from "../../components/Input/Input";
 import { Button } from "../../components/Button/Button";
+import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import { api } from "../../services/api";
 import styles from "./Login.module.css";
 
-export function Login() {
+export function Login({ toggleTheme, isDark }) {
   const [login, setLogin] = useState(
     () => localStorage.getItem("@app:login") || "",
   );
@@ -54,16 +55,12 @@ export function Login() {
 
   return (
     <div className={styles.container}>
+      <AuthHeader toggleTheme={toggleTheme} isDark={isDark} />
+      
       <div className={styles.card}>
-        <h1 className={styles.title}>Sistema Skills</h1>
+        <h1 className={styles.title}>Entrar</h1>
 
-        {erro && (
-          <p
-            style={{ color: "red", marginBottom: "16px", fontSize: "0.85rem" }}
-          >
-            {erro}
-          </p>
-        )}
+        {erro && <p className={styles.messageError}>{erro}</p>}
 
         <form onSubmit={handleLogin}>
           <Input
