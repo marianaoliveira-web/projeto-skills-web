@@ -6,7 +6,7 @@ import AuthHeader from "../../components/AuthHeader/AuthHeader";
 import { api } from "../../services/api";
 import styles from "./Login.module.css";
 
-export function Login({ toggleTheme, isDark }) {
+export function Login() {
   const [login, setLogin] = useState(
     () => localStorage.getItem("@app:login") || "",
   );
@@ -55,7 +55,7 @@ export function Login({ toggleTheme, isDark }) {
 
   return (
     <div className={styles.container}>
-      <AuthHeader toggleTheme={toggleTheme} isDark={isDark} />
+      <AuthHeader />
       
       <div className={styles.card}>
         <h1 className={styles.title}>Entrar</h1>
