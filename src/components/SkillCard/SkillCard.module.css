@@ -1,100 +1,118 @@
 .card {
-  background: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border-radius: 16px;
-  padding: 24px 20px;
+  padding: 1.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 16px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  gap: 1rem;
   position: relative;
   overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+  color: #ffffff;
+}
+
+.card:nth-child(3n + 1) {
+  background: linear-gradient(135deg, var(--brand-color-dark) 0%, var(--brand-color-secundary) 100%);
+}
+
+.card:nth-child(3n + 2) {
+  background: linear-gradient(135deg, var(--brand-color-dark) 0%, var(--brand-color-primary) 100%);
+}
+
+.card:nth-child(3n + 3) {
+  background: linear-gradient(135deg, var(--brand-color-secundary) 0%, var(--brand-color-primary) 100%);
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  border-color: var(--color-primary);
-  box-shadow: 0 12px 28px -4px rgba(45, 147, 156, 0.2);
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 35px rgba(45, 147, 156, 0.4);
 }
 
 .imageContainer {
   width: 76px;
   height: 76px;
   border-radius: 14px;
-  background-color: #f8fafc;
-  border: 1px solid #f1f5f9;
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 12px;
-  transition: transform 0.3s ease;
+  transition: transform 0.4s ease;
 }
 
 .card:hover .imageContainer {
-  transform: scale(1.05);
+  transform: scale(1.1) rotate(5deg);
 }
 
 .skillImage {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
 }
 
 .skillName {
   font-size: 1.15rem;
   font-weight: 700;
-  color: #0f172a;
+  color: #ffffff;
   text-align: center;
   margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .levelBadge {
-  font-size: 0.8rem;
+  font-size: 0.75rem;
   font-weight: 700;
   padding: 4px 12px;
   border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  backdrop-filter: blur(4px);
 }
 
 .badgeRed {
-  background-color: #fef2f2;
-  color: #ef4444;
+  background-color: rgba(239, 68, 68, 0.2);
+  color: #fca5a5;
+  border: 1px solid rgba(239, 68, 68, 0.3);
 }
 
 .badgeYellow {
-  background-color: #fffbeb;
-  color: #d97706;
+  background-color: rgba(245, 158, 11, 0.2);
+  color: #fcd34d;
+  border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .badgeGreen {
-  background-color: #ecfdf5;
-  color: #10b981;
+  background-color: rgba(16, 185, 129, 0.2);
+  color: #6ee7b7;
+  border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .batteryContainer {
   display: flex;
   align-items: center;
   gap: 2px;
+  margin-top: 4px;
 }
 
 .batteryBody {
   display: flex;
   gap: 4px;
-  border: 2px solid #cbd5e1;
+  border: 2px solid rgba(255, 255, 255, 0.3);
   padding: 4px;
   border-radius: 8px;
   width: 110px;
   height: 28px;
-  background-color: #f8fafc;
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
 .batteryNub {
   width: 5px;
   height: 14px;
-  background-color: #cbd5e1;
+  background-color: rgba(255, 255, 255, 0.3);
   border-radius: 0 3px 3px 0;
 }
 
@@ -102,23 +120,23 @@
   flex: 1;
   height: 100%;
   border-radius: 3px;
-  background-color: #e2e8f0;
+  background-color: rgba(255, 255, 255, 0.1);
   transition: all 0.3s ease;
 }
 
 .activeRed {
   background-color: #ef4444;
-  box-shadow: 0 0 8px rgba(239, 68, 68, 0.6);
+  box-shadow: 0 0 8px rgba(239, 68, 68, 0.8);
 }
 
 .activeYellow {
   background-color: #f59e0b;
-  box-shadow: 0 0 8px rgba(245, 158, 11, 0.6);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
 }
 
 .activeGreen {
   background-color: #10b981;
-  box-shadow: 0 0 8px rgba(16, 185, 129, 0.6);
+  box-shadow: 0 0 8px rgba(16, 185, 129, 0.8);
 }
 
 .actions {
@@ -140,25 +158,26 @@
 }
 
 .btnEdit {
-  background-color: #f0fdfa;
-  color: var(--color-primary);
-  border: 1px solid #ccfbf1;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff;
 }
 
 .btnEdit:hover {
-  background-color: var(--color-primary);
-  color: #ffffff;
-  border-color: var(--color-primary);
+  background: rgba(255, 255, 255, 0.3);
+  transform: translateY(-2px);
 }
 
 .btnDelete {
-  background-color: #fef2f2;
-  color: #ef4444;
-  border: 1px solid #fee2e2;
+  background: rgba(231, 76, 60, 0.15);
+  border: 1px solid rgba(231, 76, 60, 0.3);
+  color: #ff8a80;
 }
 
 .btnDelete:hover {
-  background-color: #ef4444;
+  background: rgba(231, 76, 60, 0.85);
+  border-color: #e74c3c;
   color: #ffffff;
-  border-color: #ef4444;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(231, 76, 60, 0.4);
 }
