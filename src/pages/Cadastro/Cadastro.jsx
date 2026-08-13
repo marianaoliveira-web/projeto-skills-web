@@ -6,7 +6,7 @@ import AuthHeader from '../../components/AuthHeader/AuthHeader';
 import { api } from '../../services/api';
 import styles from './Cadastro.module.css';
 
-export function Cadastro({ toggleTheme, isDark }) {
+export function Cadastro() {
     const [login, setLogin] = useState('');
     const [senha, setSenha] = useState('');
     const [confirmarSenha, setConfirmarSenha] = useState('');
@@ -38,7 +38,7 @@ export function Cadastro({ toggleTheme, isDark }) {
 
     return (
         <div className={styles.container}>
-            <AuthHeader toggleTheme={toggleTheme} isDark={isDark} />
+            <AuthHeader />
 
             <div className={styles.card}>
                 <h1 className={styles.title}>Criar Conta</h1>
