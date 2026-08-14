@@ -1,18 +1,31 @@
-import { useState, useEffect, useCallback } from "react";
+import { useCallback, useState } from "react";
+
+import { AddSkillModal } from "../../components/AddSkillModal/AddSkillModal";
+import { DeleteSkillModal } from "../../components/DeleteSkillModal/DeleteSkillModal";
+import { EditSkillModal } from "../../components/EditSkillModal/EditSkillModal";
 import { Header } from "../../components/Header/Header";
 import { SkillCard } from "../../components/SkillCard/SkillCard";
-import { AddSkillModal } from "../../components/AddSkillModal/AddSkillModal";
+
 import { api } from "../../services/api";
+
 import styles from "./Home.module.css";
 
 export function Home() {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+
+  const [selectedSkill, setSelectedSkill] = useState(null);
 
   const carregarSkills = useCallback(async () => {
     try {
       const token = localStorage.getItem("@app:token");
+
       const usuarioId = localStorage.getItem("@app:usuarioId");
 
       const response = await api.get(`/usuario-skills/usuario/${usuarioId}`, {
@@ -20,6 +33,7 @@ export function Home() {
           Authorization: `Bearer ${token}`,
         },
       });
+
       setSkills(response.data);
     } catch (error) {
       console.error("Erro ao buscar as skills:", error);
@@ -28,57 +42,30 @@ export function Home() {
     }
   }, []);
 
-  useEffect(() => {
-    async function load() {
-      await carregarSkills();
-    }
-    load();
-  }, [carregarSkills]);
+  useState(() => {
+    carregarSkills();
 
-  async function handleEdit(id) {
-    const novoLevelStr = window.prompt("Digite o novo nível da sua Skill (1 a 5):");
-    
-    if (!novoLevelStr) return; 
+    return true;
+  });
 
-    const novoLevel = Number(novoLevelStr);
-    
-    if (isNaN(novoLevel) || novoLevel < 1 || novoLevel > 5) {
-      alert("Nível inválido! Por favor, digite um número entre 1 e 5.");
-      return;
-    }
-
-    try {
-      const token = localStorage.getItem("@app:token");
-      
-      await api.put(`/usuario-skills/atualizar/${id}`, 
-        { level: novoLevel },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      
-      await carregarSkills();
-    } catch (error) {
-      console.error("Erro ao atualizar a skill:", error);
-      alert("Erro ao atualizar a skill. Tente novamente.");
-    }
+  function handleEdit(skill) {
+    setSelectedSkill(skill);
+    setIsEditModalOpen(true);
   }
 
-  async function handleDelete(id) {
-    const confirmacao = window.confirm("Tem certeza que deseja remover esta skill do seu perfil?");
-    
-    if (!confirmacao) return;
+  function handleCloseEditModal() {
+    setIsEditModalOpen(false);
+    setSelectedSkill(null);
+  }
 
-    try {
-      const token = localStorage.getItem("@app:token");
-      
-      await api.delete(`/usuario-skills/deletar/${id}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      
-      await carregarSkills();
-    } catch (error) {
-      console.error("Erro ao deletar a skill:", error);
-      alert("Erro ao remover a skill. Tente novamente.");
-    }
+  function handleDelete(skill) {
+    setSelectedSkill(skill);
+    setIsDeleteModalOpen(true);
+  }
+
+  function handleCloseDeleteModal() {
+    setIsDeleteModalOpen(false);
+    setSelectedSkill(null);
   }
 
   const existingSkillIds = skills.map((skill) => skill.skillId);
@@ -90,9 +77,10 @@ export function Home() {
       <main className={styles.mainContent}>
         <div className={styles.titleContainer}>
           <h2 className={styles.pageTitle}>Minhas Skills</h2>
+
           <button
             className={styles.btnAddSkill}
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setIsAddModalOpen(true)}
           >
             + Nova Skill
           </button>
@@ -113,9 +101,10 @@ export function Home() {
                 key={item.id}
                 skillNome={item.skillNome}
                 skillImagem={item.skillImageUrl}
+                skillDescricao={item.skillDescricao}
                 level={item.level}
-                onEdit={() => handleEdit(item.id)}
-                onDelete={() => handleDelete(item.id)}
+                onEdit={() => handleEdit(item)}
+                onDelete={() => handleDelete(item)}
               />
             ))}
           </div>
@@ -123,10 +112,25 @@ export function Home() {
       </main>
 
       <AddSkillModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isAddModalOpen}
+        onClose={() => setIsAddModalOpen(false)}
         onSkillAdded={carregarSkills}
         existingSkillIds={existingSkillIds}
+      />
+
+      <EditSkillModal
+        key={selectedSkill ? `edit-${selectedSkill.id}` : "edit-empty"}
+        isOpen={isEditModalOpen}
+        skill={selectedSkill}
+        onClose={handleCloseEditModal}
+        onSkillUpdated={carregarSkills}
+      />
+
+      <DeleteSkillModal
+        isOpen={isDeleteModalOpen}
+        skill={selectedSkill}
+        onClose={handleCloseDeleteModal}
+        onSkillDeleted={carregarSkills}
       />
     </div>
   );
